@@ -1,0 +1,23 @@
+{
+  "name": "hangmanCLI",
+  "version": "1.0.0",
+  "description": "This command line version of hangman is a fun way for back end developers to interact with node. The game-based approach allows users step into the terminal in a casual and approachable way.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JMo911/hangmanCLI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JMo911/hangmanCLI/issues"
+  },
+  "homepage": "https://github.com/JMo911/hangmanCLI#readme",
+  "dependencies": {
+    "inquirer": "^6.5.0"
+  }
+}
