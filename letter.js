@@ -6,22 +6,25 @@
 //   .then(answers => {
 //     // Use user feedback for... whatever!!
 //   });
-var word = "Jacob";
 
 function Letter(str, alreadyGuessed) {
     this.str = str;
     this.alreadyGuessed = alreadyGuessed;
     this.placeholder = function() {
-
+        if (this.alreadyGuessed) {
+            return this.str;
+        } else{
+            return "_";
+        }
     };
-    this.characterCheck = function() {
-
+    this.characterCheck = function(char) {
+        if (char === this.str) {
+            this.alreadyGuessed=true;
+        } 
     };
-
 };
 
+var J = new Letter('J', false);
 var wordArray = word.split("");
 
-wordArray.forEach(function(e){
-    console.log(e);
-});
+module.exports = Letter;
