@@ -1,29 +1,32 @@
 var Letter = require('./letter');
 
 function Word(word) {
+    var newObjectsArray = [];
     this.newArray = function(){
-        var newObjectsArray = [];
         word.split("").forEach(function(e){
             newObjectsArray.push(new Letter(e, false));
         });
-        console.log(newObjectsArray);
     };
-    // var newArray=[];
-    // this.arr = testWord.split("").forEach(function(e){
-    //     newArray.push(new Letter(e, false));
-    // });
     this.stringRep = function() {
-        letters.join;
+        var wordString="";
+        newObjectsArray.forEach(function(e){
+            wordString+=e.placeholder() + " ";
+        });
     };
-    this.guess = function() {
-        letters.array.forEach(element => {
-            guess(element);
+    this.guess = function(char) {
+        // console.log(newObjectsArray);
+        newObjectsArray.forEach(function(e){
+            e.characterCheck(char);
+            console.log(e);
         });
     };
 };
 
 var testing = new Word("Jacob");
-console.log(testing);
+// console.log(testing);
+//HAVE TO RUN NEW ARRAY FOR EACH TEST TO GENERATE THE NEWOBJECTSARRAY PREREQUISITE
 testing.newArray();
+// testing.stringRep();
+testing.guess(process.argv[2]);
 
 module.exports = Word;
