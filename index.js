@@ -45,28 +45,36 @@ function runGame() {
             {
                 type: "input",
                 name: "guess",
-                message: "Please guess a letter."
+                message: "Please guess a letter.",
+                validate: function(str) {
+                    return /[a-z]+/g.test(str) && str.split("").length===1;
+                    //str.split("").length===1; 
+                    // && str===/[a-z]+/g;
+                }
             }
         ])
         .then(answers => {
-            if (guessesRemaining>=0 && constructedWord.stringRep().indexOf("_") != -1) {
-                constructedWord.guess(answers.guess.toUpperCase());
+            constructedWord.guess(answers.guess.toUpperCase());
+            //STILL GUESSING IF YOU HAVE GUESSES REMAINING AND _S
+            if (guessesRemaining>0 && constructedWord.stringRep().indexOf("_") != -1) {
                 console.log(constructedWord.stringRep());
                 console.log("Guesses Remaining: " + guessesRemaining--);
                 guessing();
-            } else if(guessesRemaining>0 && constructedWord.stringRep().indexOf("_") === -1) {
+            } 
+            //WIN IF THERE ARE NO MORE _S AND YOU DIDN'T RUN OUT OF GUESSES
+            else if(guessesRemaining>=0 && constructedWord.stringRep().indexOf("_") === -1) {
                 init();
-                console.log("Congrats!! You won. Try another word.\n")
+                console.log("\n\nCongrats!! You won!\n")
                 wins++;
-                console.log("Wins: " + wins + "\nLosses: " + losses);
-                
+                console.log("Wins: " + wins + "\nLosses: " + losses + "\n\nHere's another word for you:\n\n");
                 runGame();
-            } else {
+            } 
+            //OTHERWISE YOU LOST
+            else {
                 init();
-                console.log("Sorry, you lost this round. Try another word.\n");
+                console.log("\n\nSorry, you lost this round.\n");
                 losses++;
-                console.log("Wins: " + wins + "\nLosses: " + losses);
-                
+                console.log("Wins: " + wins + "\nLosses: " + losses + "\n\n Try another word.\n\n");
                 runGame();
             }
         });
