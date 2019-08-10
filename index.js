@@ -2,6 +2,7 @@ var Word = require("./word");
 var inquirer = require('inquirer');
 
 function runGame() {
+    var guessesRemaining;
     var possibleWords = [
         "AUSTRIA", 
         "COSTA RICA", 
@@ -16,7 +17,11 @@ function runGame() {
     randomWord = possibleWords[Math.floor(Math.random()*(possibleWords.length))];
     var constructedWord = new Word(randomWord);
     //turn the word into my array of objects first
-    constructedWord.newArray();
+    var wordArray = constructedWord.newArray();
+    guessesRemaining = wordArray.length*1.2;
+    
+    //guessesRemaining=constructedWord.length*1.4;
+
     //call the string representation method on that array of objects to display the word as expected.
     
     console.log(randomWord);
@@ -24,6 +29,9 @@ function runGame() {
     //begin prompting user for guesses
     // console.log("Welcome to hangman! Type a letter and press enter to begin guessing.");
 
+    guessing();
+
+    function guessing(){
     inquirer
     .prompt([
         /* Pass your questions in here */
@@ -36,9 +44,15 @@ function runGame() {
     .then(answers => {
         // Use user feedback for... whatever!!
         // console.log("users guess: " + answers.guess);
+        if (guessesRemaining>0) {
         constructedWord.guess(answers.guess.toUpperCase());
         console.log(constructedWord.stringRep());
+        console.log("Guesses Remaining: " + guessesRemaining--);
+        guessing();} else {
+            runGame();
+        }
     });
+    };
 
 
     //need to randomly select a word from my array
