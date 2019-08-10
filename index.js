@@ -47,7 +47,11 @@ function runGame() {
                 name: "guess",
                 message: "Please guess a letter.",
                 validate: function(str) {
-                    return /[a-z]+/g.test(str) && str.split("").length===1;
+                    if(/[a-z]+/g.test(str) && str.split("").length===1){
+                        return true;
+                    } else {
+                        console.log("\nPlease ONLY type 1 letter at a time.")
+                    };
                     //str.split("").length===1; 
                     // && str===/[a-z]+/g;
                 }
