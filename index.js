@@ -25,17 +25,12 @@ function init() {
     constructedWord = new Word(randomWord);
     wordArray = constructedWord.newArray();
     guessesRemaining = Math.floor(wordArray.length*1.2);
-    // console.log(wordArray);
 }
 init();
-
-
-
 
 function runGame() {
     console.log(constructedWord.stringRep());
     //begin prompting user for guesses
-
     guessing();
 
     function guessing(){
@@ -52,8 +47,6 @@ function runGame() {
                     } else {
                         console.log("\nPlease ONLY type 1 letter at a time.")
                     };
-                    //str.split("").length===1; 
-                    // && str===/[a-z]+/g;
                 }
             }
         ])
@@ -61,7 +54,7 @@ function runGame() {
             constructedWord.guess(answers.guess.toUpperCase());
             //STILL GUESSING IF YOU HAVE GUESSES REMAINING AND _S
             if (guessesRemaining>0 && constructedWord.stringRep().indexOf("_") != -1) {
-                console.log(constructedWord.stringRep());
+                console.log("\n\n" + constructedWord.stringRep());
                 console.log("Guesses Remaining: " + guessesRemaining--);
                 guessing();
             } 
@@ -83,12 +76,5 @@ function runGame() {
             }
         });
     };
-
-
-    //need to randomly select a word from my array
-    // var random = Math.floor(Math.random(wordarraylength) +1);
-    //use the Word constructor to store my chosen word
-    //prompt user for guesses, and decrement remaining guesses
-    //handle win/loss messaging and logic.
 };
 runGame();
