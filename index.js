@@ -14,8 +14,16 @@ function runGame() {
     //select random word from my array and create a new word object for it
     var randomWord='';
     randomWord = possibleWords[Math.floor(Math.random()*(possibleWords.length))];
-    new Word(randomWord);
+    var constructedWord = new Word(randomWord);
+    //turn the word into my array of objects first
+    constructedWord.newArray();
+    //call the string representation method on that array of objects to display the word as expected.
+    
+    console.log(randomWord);
+    console.log(constructedWord.stringRep());
     //begin prompting user for guesses
+    // console.log("Welcome to hangman! Type a letter and press enter to begin guessing.");
+
     inquirer
     .prompt([
         /* Pass your questions in here */
@@ -28,6 +36,8 @@ function runGame() {
     .then(answers => {
         // Use user feedback for... whatever!!
         // console.log("users guess: " + answers.guess);
+        constructedWord.guess(answers.guess.toUpperCase());
+        console.log(constructedWord.stringRep());
     });
 
 
