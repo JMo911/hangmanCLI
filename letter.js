@@ -15,8 +15,4 @@ function Letter(str, alreadyGuessed) {
     };
 };
 
-// var J = new Letter('J', false);
-// console.log(J.placeholder());
-// var wordArray = word.split("");
-
 module.exports = Letter;
